@@ -1,26 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Provider } from "react-redux";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import { ThemeProvider } from "@material-ui/core";
+import CssBaseline from "@material-ui/core/CssBaseline";
 
-export default App;
+import { Initializer } from "./Initializer";
+import { SnackbarMessages } from "./components/common/SnackbarMessages";
+import { Router } from "./components/routes/Router";
+import { configureStore } from "./app/store";
+import { theme } from "./assets/styles/theme";
+
+export const App = () => (
+  <Provider store={configureStore()}>
+    <CssBaseline />
+    <ThemeProvider theme={theme}>
+      <Initializer>
+        <Router />
+      </Initializer>
+      <SnackbarMessages />
+    </ThemeProvider>
+  </Provider>
+);
