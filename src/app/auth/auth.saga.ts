@@ -7,8 +7,13 @@ import {
   persistLoggedUser,
   readLoggedUser,
   abandonLoggedUser,
+  readLoggedUserData,
 } from "./auth.utils";
-import { registerAPI, loginAPI } from "./auth.api";
+import { registerAPI, loginAPI, loggedUserDataAPI } from "./auth.api";
+import {
+  storeLoggedUsersData,
+  clearLoggedUsersData,
+} from "../account/account.actions";
 
 export function* registerNewUser(action: IRegisterUserAction) {
   yield call(apiRequest, registerAPI(action.payload));
@@ -22,13 +27,18 @@ export function* logUserIn(userCredentials: IUserCredentials) {
 
 export function* initAuth() {
   const loggedUser = yield call(readLoggedUser);
+  const loggedUserData = yield call(readLoggedUserData);
 
   if (loggedUser) {
     yield put(storeLoggedUser(loggedUser));
+  }
+  if (loggedUserData) {
+    yield put(storeLoggedUsersData(loggedUserData));
   }
 }
 
 export function* logUserOut() {
   yield put(clearLoggedUser());
+  yield put(clearLoggedUsersData());
   yield call(abandonLoggedUser);
 }

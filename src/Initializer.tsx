@@ -6,7 +6,6 @@ import { initApp } from "./app/init/init.actions";
 export const Initializer: FunctionComponent = ({ children }) => {
   const dispatch = useDispatch();
   const isInitComplete = useSelector(selectIsInitComplete);
-
   useEffect(() => {
     dispatch(initApp());
   }, [dispatch]);
