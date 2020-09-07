@@ -3,11 +3,12 @@ import { theme } from "./theme";
 
 export const usePageStyle = makeStyles({
   root: {
-    height: "100vh",
+    minHeight: "100vh",
     width: "100vw",
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
+    overflowX: "hidden",
   },
   gridContainer: {
     background:
@@ -26,5 +27,13 @@ export const usePageStyle = makeStyles({
   },
   plainGridItem: {
     marginBottom: theme.spacing(1),
+  },
+  filter: {
+    minHeight: "9rem",
+    maxWidth: "30rem",
+  },
+  item: {
+    padding: "3rem",
+    minWidth: "30rem",
   },
 });
