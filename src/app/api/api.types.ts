@@ -1,7 +1,7 @@
-import { AxiosRequestConfig } from 'axios';
+import { AxiosRequestConfig } from "axios";
 
-type IResponseType = 'blob';
-export type IApiMethod = 'get' | 'post' | 'put' | 'delete';
+type IResponseType = "blob";
+export type IApiMethod = "get" | "post" | "put" | "delete" | "patch";
 
 export interface IApiRequestInfo<TPayload = unknown, TParams = unknown> {
   uri: string;
@@ -9,5 +9,5 @@ export interface IApiRequestInfo<TPayload = unknown, TParams = unknown> {
   params?: TParams;
   data?: TPayload;
   responseType?: IResponseType;
-  overrides?: Pick<AxiosRequestConfig, 'baseURL' | 'headers'>;
+  overrides?: Pick<AxiosRequestConfig, "baseURL" | "headers">;
 }
