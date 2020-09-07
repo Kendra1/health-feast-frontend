@@ -5,7 +5,7 @@ import { IApiRequestInfo } from "./api.types";
 import { selectLoggedUserToken } from "../auth/auth.selectors";
 
 const api = axios.create({
-  baseURL: "localhost:8000" || "",
+  baseURL: "http://localhost:8081",
   headers: {
     "Content-Type": "application/json",
     Accept: "application/json",
@@ -30,7 +30,7 @@ export default function* apiRequest(requestInfo: IApiRequestInfo) {
         ? requestInfo.responseType
         : undefined,
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `${token}`,
       },
       ...requestInfo.overrides,
     });
